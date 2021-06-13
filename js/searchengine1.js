@@ -1,23 +1,28 @@
 $(document).ready(() => {
     $('#searchForm').on('submit', (e) => {
         var searchText = $('#searchText').val();
-        getBooks(searchText);
+        localStorage.setItem("storageName", searchText);
+        getBooks();
         e.preventDefault();
+        return false;
+    })
+    $('#searchForm1').on('submit', (e) => {
+        var searchText = $('#searchText1').val();
+        //   window.open('Sbooks.html', '_blank');
+        window.location.href = 'Sbooks.html';
+        localStorage.setItem("storageName", searchText);
         return false;
     })
 
 });
-var input = document.getElementById("myInput");
-input.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById("myBtn").click();
-    }
-});
 
 
 
-function getBooks(searchText) {
+
+function getBooks() {
+    var searchText = localStorage.getItem("storageName");
+    localStorage.setItem("storageName", "");
+    console.log("AAAA" + searchText);
     $('#preloader').removeClass('hidden');
     axios.get('https://www.googleapis.com/books/v1/volumes?q=' + searchText)
         .then((response) => {
