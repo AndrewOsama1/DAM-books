@@ -22,8 +22,7 @@ $(document).ready(() => {
 function getBooks() {
     var searchText = localStorage.getItem("storageName");
     localStorage.setItem("storageName", "");
-    console.log("AAAA" + searchText);
-    $('#preloader').removeClass('hidden');
+    // $('#preloader').removeClass('hidden');
     axios.get('https://www.googleapis.com/books/v1/volumes?q=' + searchText)
         .then((response) => {
             console.log(response);
@@ -31,16 +30,49 @@ function getBooks() {
             var output = '';
             $.each(books, (index, book) => {
                 //console.log(book.accessInfo)
-                output += "<div class='weather-card one'>";
+                output += "<div class='flip-card-container ' style='--hue: 220 '>";
+                output += "<div class='flip-card'>";
+                output += "<div class='card-front'>";
+                output += "<figure>";
+                output += "<div class='img-bg'></div>";
+
+
+
                 if (book.volumeInfo.imageLinks != undefined) {
-                    output += " <div class='top' style='background: url(" + book.volumeInfo.imageLinks.thumbnail + ")no-repeat center center/cover;'> </div> ";
+                    output += " <img src= '" + book.volumeInfo.imageLinks.thumbnail + "> ";
                 } else {
                     output += "<img src= 'images/book.jpg' />";
                 }
                 var book_title = book.volumeInfo.title.length > 35 ? book.volumeInfo.title.substring(0, 35) + '...' : book.volumeInfo.title;
+                output += "<figcaption> " + book_title + " </figcaption>";
+                output += "</figure>";
+                output += "</div>";
+                output += "<div class='card-back'>";
+                output += "<figure>";
+                output += "<div class='img-bg'></div>";
 
-                output += "<div class='wrapper'>";
-                output += "<h1 class='heading '> " + book.volumeInfo.title + " </h1>";
+
+
+                if (book.volumeInfo.imageLinks != undefined) {
+                    output += " <img src= '" + book.volumeInfo.imageLinks.thumbnail + "> ";
+                } else {
+                    output += "<img src= 'images/book.jpg' />";
+                }
+                output += "</figure>";
+                output += "<button onclick= bookselected('" + book.id + "') class='Bookaa'>View Book</button>";
+                output += "<div class='design-container'>";
+                output += "<span class='design design--1 '></span>";
+                output += "<span class='design design--2 '></span>";
+                output += "<span class='design design--3 '></span>";
+                output += "<span class='design design--4 '></span>";
+                output += "<span class='design design--5 '></span>";
+                output += "<span class='design design--6 '></span>";
+                output += "<span class='design design--7 '></span>";
+                output += "<span class='design design--8 '></span>";
+
+
+                output += "</div>";
+                output += "</div>";
                 output += "</div>";
                 output += "</div>";
                 output += "</div>";
@@ -55,13 +87,14 @@ function getBooks() {
 
 function bookselected(id) {
     //alert(id)
-    sessionStorage.setItem('bookId', id);
-    window.open('book.html', '_blank');
+    window.location.href = 'book.html';
+    localStorage.setItem("storageName", id);
     return false;
 }
 
 function getbook() {
-    var id = sessionStorage.getItem('bookId');
+    var id = localStorage.getItem("storageName");
+    localStorage.setItem("storageName", "");
     axios.get('https://www.googleapis.com/books/v1/volumes/' + id)
         .then((response) => {
             $('#book').removeClass('hidden');
