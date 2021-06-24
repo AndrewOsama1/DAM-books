@@ -1,15 +1,15 @@
 $(document).ready(() => {
-    $('#searchForm').on('submit', (e) => {
-        var searchText = $('#searchText').val();
+    $('#searchForm2').on('submit', (e) => {
+        var searchText = $('#searchText2').val();
         localStorage.setItem("storageName", searchText);
         getBooks();
         e.preventDefault();
         return false;
     })
-    $('#searchForm1').on('submit', (e) => {
-        var searchText = $('#searchText1').val();
+    $('#searchForm3').on('submit', (e) => {
+        var searchText = $('#searchText3').val();
         //   window.open('Sbooks.html', '_blank');
-        window.location.href = 'Sbooks.html';
+        window.location.href = 'mangasearch.html';
         localStorage.setItem("storageName", searchText);
         return false;
     })
@@ -23,13 +23,12 @@ function getBooks() {
     var searchText = localStorage.getItem("storageName");
     localStorage.setItem("storageName", "");
     // $('#preloader').removeClass('hidden');
-    axios.get('https://www.googleapis.com/books/v1/volumes?q=' + searchText)
+    axios.get('https://api.jikan.moe/v3/search/manga?q=' + searchText)
         .then((response) => {
             console.log(response);
-            var books = response.data.items;
+            var books = response.data.results;
             var output = '';
             $.each(books, (index, book) => {
-                console.log(book.accessInfo)
                 output += "<div class='flip-card-container ' style='--hue: 220 '>";
                 output += "<div class='flip-card'>";
                 output += "<div class='card-front'>";
@@ -38,12 +37,12 @@ function getBooks() {
 
 
 
-                if (book.volumeInfo.imageLinks != undefined) {
-                    output += " <img src= '" + book.volumeInfo.imageLinks.thumbnail + "' /> ";
+                if (book.image_url != undefined) {
+                    output += " <img src= '" + book.image_url + "' /> ";
                 } else {
                     output += "<img src= 'images/book.jpg' />";
                 }
-                var book_title = book.volumeInfo.title.length > 35 ? book.volumeInfo.title.substring(0, 35) + '...' : book.volumeInfo.title;
+                var book_title = book.title > 35 ? book.title.substring(0, 35) + '...' : book.title;
                 output += "<figcaption> " + book_title + " </figcaption>";
                 output += "</figure>";
                 output += "</div>";
@@ -53,8 +52,8 @@ function getBooks() {
 
 
 
-                if (book.volumeInfo.imageLinks != undefined) {
-                    output += " <img src= '" + book.volumeInfo.imageLinks.thumbnail + "' /> ";
+                if (book.image_url != undefined) {
+                    output += " <img src= '" + book.image_url + "' /> ";
                 } else {
                     output += "<img src= 'images/book.jpg' />";
                 }
@@ -78,7 +77,7 @@ function getBooks() {
                 output += "</div>";
             });
             $('#preloader').addClass('hidden');
-            $('#books').html(output);
+            $('#manga').html(output);
         })
         .catch((err) => {
             console.log(err);
@@ -95,7 +94,7 @@ function bookselected(id) {
 function getbook() {
     var id = localStorage.getItem("storageName");
     localStorage.setItem("storageName", "");
-    axios.get('https://www.googleapis.com/books/v1/volumes/' + id)
+    axios.get('https://api.jikan.moe/v3/manga/' + id)
         .then((response) => {
             $('#book').removeClass('hidden');
             console.log(response);
@@ -137,6 +136,3 @@ function getbook() {
             console.log(err);
         });
 }
-
-
-
