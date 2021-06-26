@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body onload="getBooks();">
+<body>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="homepage.html">DAM Books</a>
@@ -104,10 +104,14 @@
         <div class=" ">
             <div class="row">
                 <div class="col-md-10 ftco-animate sidebar order-first " style="background-color: #1c1c1c !important; ">
-
+                    <div id="book-details" class="row">
+                    </div>
 
                     <div class="row ">
                         <div class="sidebar-box ftco-animate ">
+                            <div id="mostafa">
+                                
+                            </div>
                             <h3 class="text-center mx-50 ">Top 6 Rated Books</h3>
                             <div class="block-100 mb-4 d-flex ">
                                 <a class="blog-img mr-4 " style="background-image: url(images/rated1.jpeg "></a>
@@ -367,7 +371,15 @@
     <script src="js/and.js "></script>
     <script type="text/javascript"> 
         $(document).ready(function(){
-            alert(window.location.href.split("?id=")[1]);
+            var id = window.location.href.split("?id=")[1] 
+
+            axios.get('https://www.googleapis.com/books/v1/volumes/' + id).then((response) => {
+                console.log(response);
+                var html = "<h1> " +  response.data.volumeInfo.authors.join(" بالتعاون مع ") + " <h1> <br>" + 
+                "<p> "+ response.data.volumeInfo.title +"</p>";
+                $("#book-details").html(html);
+                $("#mostafa").html("want to reach the sky");
+            })
         })
     </script>
 
