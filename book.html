@@ -440,7 +440,7 @@ var auth = document.getElementById("auth");
 
 
  var preview = document.getElementById("prev");
- preview.innerHTML = "Preview Link: " + response.data.volumeInfo.previewLink;
+ preview.innerHTML = "Preview Link: " + "<a href='" + response.data.volumeInfo.previewLink + "'  target='_blank'> open book </a>";
 
  var page = document.getElementById("page");
  page.innerHTML = "Page Count: " + response.data.volumeInfo.pageCount ;
