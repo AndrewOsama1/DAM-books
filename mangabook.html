@@ -104,20 +104,60 @@
 
 
     <section class="ftco-section ftco-degree-bg ">
+        <div id="manga-details" class="row">
+        </div>
         <div class=" ">
-            <div class="row " ">
+            <div class="row " >
                 <div class="col-md-10 ftco-animate sidebar order-first " style="background-color: #1c1c1c !important; ">
 
 
                     <div class="row ">
                         <div class="sidebar-box ftco-animate ">
-                            <h3 class="text-center mx-50 ">Top 6 Rated Books</h3>
-                            <div class="block-100 mb-4 d-flex ">
-                                <a class="blog-img mr-4 " style="background-image: url(images/rated1.jpeg "></a>
-                                <div class="text ">
-                                    <h3 class="heading "><a href="# ">It's a Magical World (Calvin and Hobbes)</a></h3>
+                            <h3 class="text-center mx-50 " id="sasa">
 
-                                </div>
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id="engTitle">
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id="auhtorss">
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id="backgroundd">
+
+                            </h3>
+                            <h3 class="text-center mx-50 " id="chapterss">
+
+                            </h3>
+                            <h3 class="text-center mx-50 " id="memberss">
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id="ranks">
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id="urls">
+<!-- <a style = "
+cursor: pointer;
+color: blue;
+"
+> </a> -->
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id="score">
+
+                            </h3>
+
+                            <div class="block-100 mb-4 d-flex ">
+                                <img src="" alt="">
+                                 <a class="blog-img mr-4 " id = "images" , style="background-image:" ></a>
+                                <div class="text ">
+                                    <!-- <h3 class="heading "><a href="# ">It's a Magical World (Calvin and Hobbes)</a></h3> -->
+                                 </div>
                             </div>
 
 
@@ -129,11 +169,11 @@
                                         <div class="sidebar-box ftco-animate ">
                                             <div class="categories ">
                                                 <h3>Categories</h3>
-                                                <li><a href="# ">Food <span>(12)</span></a></li>
-                                                <li><a href="# ">Dish <span>(22)</span></a></li>
-                                                <li><a href="# ">Desserts <span>(37)</span></a></li>
-                                                <li><a href="# ">Drinks <span>(42)</span></a></li>
-                                                <li><a href="# ">Ocassion <span>(14)</span></a></li>
+                                                <li><a href="# ">Action <span>(12)</span></a></li>
+                                                <li><a href="# ">Drama <span>(22)</span></a></li>
+                                                <li><a href="# ">Comedy <span>(37)</span></a></li>
+                                                <li><a href="# ">Science Fiction <span>(42)</span></a></li>
+                                                <li><a href="# ">Horror <span>(14)</span></a></li>
                                             </div>
                                         </div>
 
@@ -367,8 +407,72 @@
     <script src="js/popper.js "></script>
     <script src="https://code.jquery.com/jquery-3.2.0.min.js " integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin=" anonymous "></script>
     <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.js "></script>
-    <script src="js/searchengine1.js "></script>
+    <script src="js/searchengine2.js "></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
 
+            var id = window.location.href.split("?id=")[1]
+
+axios.get('https://api.jikan.moe/v3/manga/' + id).then((response) => {
+    console.log(response);
+
+
+var title = document.getElementById("sasa")
+title.innerHTML = "Title: " + response.data.title;
+
+var engTitle = document.getElementById("engTitle")
+ engTitle.innerHTML = "English Title: " + response.data.title_english;
+
+var pic = document.getElementById("images");
+ images.innerHTML = "<img src = " + response.data.image_url +" > </img>"
+
+
+//  var background = document.getElementById("backgroundd")
+//  background.innerHTML = "Background: " + response.data.background;
+
+ var chapter = document.getElementById("chapterss")
+ chapter.innerHTML = "Chapters:  " + response.data.chapters;
+
+ var members = document.getElementById("memberss")
+ members.innerHTML = "Members Number:  " + response.data.members;
+
+
+ var rank = document.getElementById("ranks")
+ rank.innerHTML = "Rank: " + response.data.rank;
+
+ var url = document.getElementById("urls")
+ url.innerHTML = "<a>" + "URL:  " + response.data.url + "</a>" ;
+
+ var scores = document.getElementById("score")
+ scores.innerHTML = "Score: " + response.data.score;
+
+
+
+// img
+
+
+
+
+
+   // var html = " <img src= '" + response.data.image_url + "' /><br><br> " ;
+    //  "<h2> "+ "Title: " +response.data.title + "&nbsp "+"<br>"  + "English Title: " + response.data.title_english +"</h2>"+
+
+    //  "<br> <h4> " + "Background: " + response.data.background + " <h4> <br>" +
+    // // "<p> " + "Authors: " + response.data.authors[0].name +"</p><br>"+
+    // "<p> "+ "Members: " + response.data.members +"</p><br>" +
+    // "<p> "+ "Chapters Number: " + response.data.chapters +"</p><br>" +
+    // "<p> "+ "Rank: " + response.data.rank +"</p><br>" +
+
+    // "<a> "+ "URL: " + response.data.url +"</a><br>"+
+    // "<p> " + "Score: " + response.data.score +"</p>"
+    //   ;
+    $("#manga-details").html(html);
+
+
+
+    })
+        })
+    </script>
 </body>
 
 </html>

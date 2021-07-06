@@ -104,15 +104,57 @@
         <div class=" ">
             <div class="row">
                 <div class="col-md-10 ftco-animate sidebar order-first " style="background-color: #1c1c1c !important; ">
-
+                    <div id="books-details" class="row">
+                    </div>
 
                     <div class="row ">
                         <div class="sidebar-box ftco-animate ">
-                            <h3 class="text-center mx-50 ">Top 6 Rated Books</h3>
+                            <h3 class="text-center mx-50 " id = " tit" >
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id = " auth" >
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id = " cat" >
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id = " lang" >
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id = " date" >
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id = " prev" >
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id = " page" >
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id = " buy" >
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id = " price" >
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id = " sale" >
+
+                            </h3>
+
+
                             <div class="block-100 mb-4 d-flex ">
-                                <a class="blog-img mr-4 " style="background-image: url(images/rated1.jpeg "></a>
+                                <!-- <img src="" alt=""> -->
+                                <!-- <a class="blog-img mr-4 " style="background-image:"></a> -->
                                 <div class="text ">
-                                    <h3 class="heading "><a href="# ">It's a Magical World (Calvin and Hobbes)</a></h3>
+                                    <!-- <h3 class="heading "><a href="# ">It's a Magical World (Calvin and Hobbes)</a></h3> -->
 
                                 </div>
                             </div>
@@ -364,10 +406,68 @@
     <script src="https://code.jquery.com/jquery-3.2.0.min.js " integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin=" anonymous "></script>
     <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.js "></script>
     <script src="js/searchengine1.js "></script>
-    <script src="js/and.js "></script>
-    <script type="text/javascript"> 
+
+    <script type="text/javascript">
         $(document).ready(function(){
-            alert(window.location.href.split("?id=")[1]);
+
+            var id = window.location.href.split("?id=")[1]
+
+axios.get('https://www.googleapis.com/books/v1/volumes/' + id).then((response) => {
+    console.log(response);
+
+    var tit = document.getElementById("tit");
+tit.innerHTML = "Title: " + response.data.volumeInfo.title;
+
+    var titleBook = document.getElementById("Tit");
+titleBook.innerHTML = "Title: " + response.data.volumeInfo.title;
+
+var auth = document.getElementById("auth");
+ auth.innerHTML = "Author: " + response.data.volumeInfo.authors;
+
+ var picture = document.getElementById("images");
+ images.innerHTML = "<img src = " + response.data.volumeInfo.imageLinks.medium + " > </img>"
+
+ var category = document.getElementById("cat");
+ category.innerHTML = "Categories: " + response.data.volumeInfo.categories;
+
+ var language = document.getElementById("lang");
+ language.innerHTML = "Language: " + response.data.volumeInfo.language +"</p><br>";
+
+ var datee = document.getElementById("date");
+ datee.innerHTML = "Published Date: " + response.data.volumeInfo.publishedDate;
+
+
+ var preview = document.getElementById("prev");
+ preview.innerHTML = "Preview Link: " + response.data.volumeInfo.previewLink;
+
+ var page = document.getElementById("page");
+ page.innerHTML = "Page Count: " + response.data.volumeInfo.pageCount ;
+
+ var buyL = document.getElementById("buy");
+ buyL.innerHTML = "Sale Info: " + response.data.saleInfo.buyLink;
+
+ var price = document.getElementById("price");
+ price.innerHTML = "Price: " + response.data.saleInfo.listPrice.amount + response.data.saleInfo.listPrice.currencyCode ;
+
+ var sale = document.getElementById("sale");
+ sale.innerHTML = "Sale Ability: " + response.data.saleInfo.saleability ;
+
+
+//    var html = " <img src= '" + response.data.volumeInfo.imageLinks.thumbnail + "' /><br> "
+//     "<p> "+ "Title: " +response.data.volumeInfo.title +"</p><br>" +
+//     "<h4> " + "Author: " + response.data.volumeInfo.authors + " <h4> <br>"+
+//     "<p> " + "Categories: " + response.data.volumeInfo.categories +"</p><br>"+
+//     "<p> "+ "Language: " + response.data.volumeInfo.language +"</p><br>" +
+//     "<p> "+ "Published Date: " + response.data.volumeInfo.publishedDate +"</p><br>" +
+//     "<p> "+ "Preview Link: " + response.data.volumeInfo.previewLink +"</p><br>" +
+//     "<p> "+ "Page Count: " + response.data.volumeInfo.pageCount +"</p><br>" +
+//     "<p> "+ "Sale Info: " + response.data.saleInfo.buyLink +"</p><br>"+
+//     "<p> " + response.data.saleInfo.listPrice.amount + response.data.saleInfo.listPrice.currencyCode +"</p>" +
+//     "<p> " + response.data.saleInfo.saleability +"</p>" +
+//     "<p> " + response.data.items[0].volumeInfo.authors[0] +"</p>"
+//    ;
+    $("#books-details").html(html);
+    })
         })
     </script>
 

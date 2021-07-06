@@ -27,6 +27,7 @@ function getBooks() {
         .then((response) => {
             console.log(response);
             var books = response.data.results;
+            console.log(books);
             var output = '';
             $.each(books, (index, book) => {
                 output += "<div class='flip-card-container ' style='--hue: 220 '>";
@@ -58,7 +59,7 @@ function getBooks() {
                     output += "<img src= 'images/book.jpg' />";
                 }
                 output += "</figure>";
-                output += "<button onclick= bookselected('" + book.id + "') class='Bookaa'>View Book</button>";
+                output += "<button onclick= bookselected('" + book.mal_id + "') class='Bookaa'>View Book</button>";
                 output += "<div class='design-container'>";
                 output += "<span class='design design--1 '></span>";
                 output += "<span class='design design--2 '></span>";
@@ -86,7 +87,7 @@ function getBooks() {
 
 function bookselected(id) {
     // alert(id)
-    window.location.href = 'book.html?id=' + id;
+    window.location.href = 'mangabook.html?id=' + id;
     localStorage.setItem("storageName", id);
     return false;
 }
@@ -96,7 +97,7 @@ function getbook() {
     localStorage.setItem("storageName", "");
     axios.get('https://api.jikan.moe/v3/manga/' + id)
         .then((response) => {
-            $('#book').removeClass('hidden');
+           // $('#book').removeClass('hidden');
             console.log(response);
             var info = response.data.volumeInfo;
             var cat = info.categories;
