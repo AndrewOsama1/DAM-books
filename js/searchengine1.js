@@ -85,9 +85,14 @@ function getBooks() {
         });
 }
 
-function bookselected(id) {
+function bookselected(id, from_comic) {
     // alert(id)
-    window.location.href = 'book.html?id=' + id;
+    if(from_comic){
+         window.location.href = 'comicbook.html?id=' + id;    
+    }else{
+        window.location.href = 'book.html?id=' + id;    
+    }
+    
     localStorage.setItem("storageName", id);
     return false;
 }
