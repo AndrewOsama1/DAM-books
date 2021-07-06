@@ -107,45 +107,49 @@
                     <div id="books-details" class="row">
                     </div>
 
-                    <div class="row ">
+                    <div class="row">
                         <div class="sidebar-box ftco-animate ">
-                            <h3 class="text-center mx-50 " id = " tit" >
+                            <h3 class="text-center mx-50 " id = "tit" >
 
                             </h3>
 
-                            <h3 class="text-center mx-50 " id = " auth" >
+                            <h3 class="text-center mx-50 " id = "auth" >
 
                             </h3>
 
-                            <h3 class="text-center mx-50 " id = " cat" >
+                            <h3 class="text-center mx-50 " id = "images" >
 
                             </h3>
 
-                            <h3 class="text-center mx-50 " id = " lang" >
+                            <h3 class="text-center mx-50 " id = "cat" >
 
                             </h3>
 
-                            <h3 class="text-center mx-50 " id = " date" >
+                            <h3 class="text-center mx-50 " id = "lang" >
 
                             </h3>
 
-                            <h3 class="text-center mx-50 " id = " prev" >
+                            <h3 class="text-center mx-50 " id = "date" >
 
                             </h3>
 
-                            <h3 class="text-center mx-50 " id = " page" >
+                            <h3 class="text-center mx-50 " id = "prev" >
 
                             </h3>
 
-                            <h3 class="text-center mx-50 " id = " buy" >
+                            <h3 class="text-center mx-50 " id = "page" >
 
                             </h3>
 
-                            <h3 class="text-center mx-50 " id = " price" >
+                            <h3 class="text-center mx-50 " id = "buy" >
 
                             </h3>
 
-                            <h3 class="text-center mx-50 " id = " sale" >
+                            <h3 class="text-center mx-50 " id = "price" >
+
+                            </h3>
+
+                            <h3 class="text-center mx-50 " id = "sale" >
 
                             </h3>
 
@@ -418,14 +422,12 @@ axios.get('https://www.googleapis.com/books/v1/volumes/' + id).then((response) =
     var tit = document.getElementById("tit");
 tit.innerHTML = "Title: " + response.data.volumeInfo.title;
 
-    var titleBook = document.getElementById("Tit");
-titleBook.innerHTML = "Title: " + response.data.volumeInfo.title;
 
 var auth = document.getElementById("auth");
  auth.innerHTML = "Author: " + response.data.volumeInfo.authors;
 
- var picture = document.getElementById("images");
- images.innerHTML = "<img src = " + response.data.volumeInfo.imageLinks.medium + " > </img>"
+ var images = document.getElementById("images");
+ images.innerHTML = "<img src = " + response.data.volumeInfo.imageLinks.thumbnail + "/>"
 
  var category = document.getElementById("cat");
  category.innerHTML = "Categories: " + response.data.volumeInfo.categories;
@@ -447,7 +449,10 @@ var auth = document.getElementById("auth");
  buyL.innerHTML = "Sale Info: " + response.data.saleInfo.buyLink;
 
  var price = document.getElementById("price");
- price.innerHTML = "Price: " + response.data.saleInfo.listPrice.amount + response.data.saleInfo.listPrice.currencyCode ;
+ if (response.data.saleInfo.listPrice){
+ price.innerHTML = "Price: " + response.data.saleInfo.listPrice.amount + response.data.saleInfo.listPrice.currencyCode ;   
+ }
+ 
 
  var sale = document.getElementById("sale");
  sale.innerHTML = "Sale Ability: " + response.data.saleInfo.saleability ;
@@ -466,7 +471,7 @@ var auth = document.getElementById("auth");
 //     "<p> " + response.data.saleInfo.saleability +"</p>" +
 //     "<p> " + response.data.items[0].volumeInfo.authors[0] +"</p>"
 //    ;
-    $("#books-details").html(html);
+    // $("#books-details").html(html);
     })
         })
     </script>
