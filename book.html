@@ -110,6 +110,9 @@
                             <h3 class="text-left mx-50 " id="auth">
 
                             </h3>
+                            <h3 class="text-left " id="desc">
+
+                            </h3>
 
                             <h3 class="text-left " id="cat">
 
@@ -121,18 +124,15 @@
                             <h3 class="text-left " id="date">
 
                             </h3>
-                            <h3 class="text-left " id="prev">
-
-                            </h3>
+                           
 
                             <h3 class="text-left " id="page">
 
                             </h3>
 
-                            <h3 class="text-left " id="buy">
+                            
 
-                            </h3>
-
+                            
                             <h3 class="text-left " id="price">
 
                             </h3>
@@ -140,6 +140,12 @@
                             <h3 class="text-left " id="sale">
 
                             </h3>
+                            <button class="cybr-btn " id="buy" style="color:white  ;  margin-top: 50px;" >
+
+                            </button>
+                            <button class="cybr-btn " id="prev" style="color:white ; margin-top: 50px;" >
+
+                            </button>
 
                            
 
@@ -401,6 +407,7 @@ tit.innerHTML = "" + response.data.volumeInfo.title;
 var auth = document.getElementById("auth");
  auth.innerHTML = "Author: " + response.data.volumeInfo.authors;
 
+
  var images = document.getElementById("images");
  images.innerHTML = "<img src = " + response.data.volumeInfo.imageLinks.thumbnail + "/>"
 
@@ -414,19 +421,25 @@ var auth = document.getElementById("auth");
  datee.innerHTML = "Published Date: " + response.data.volumeInfo.publishedDate;
 
 
- var preview = document.getElementById("prev");
- preview.innerHTML = "Preview Link: " + "<a href='" + response.data.volumeInfo.previewLink + "'  target='_blank'> Open Book Link </a>";
+ 
 
  var page = document.getElementById("page");
  page.innerHTML = "Page Count: " + response.data.volumeInfo.pageCount ;
 
- var buyL = document.getElementById("buy");
- buyL.innerHTML = "Sale Info: " +  "<a href='" + response.data.saleInfo.buyLink + "'  target='_blank'> Open Buy Link </a>";
+ 
 
  var price = document.getElementById("price");
  if (response.data.saleInfo.listPrice){
  price.innerHTML = "Price: " + response.data.saleInfo.listPrice.amount + response.data.saleInfo.listPrice.currencyCode ;
  }
+
+ if(response.data.accessInfo.viewability = 'SAMPLE' ){
+    buy.innerHTML = " " + "<a style='color:white;' href='bookkk.html?isbn=" + response.data.volumeInfo.industryIdentifiers[0].identifier + "'  target='_blank'> Read Now </a>";
+
+ }
+ var preview = document.getElementById("prev");
+ preview.innerHTML =  " " + "<a style='color:white;' href='" + response.data.volumeInfo.previewLink + "'  target='_blank'> Buy now </a>";
+
 
 
 
