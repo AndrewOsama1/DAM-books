@@ -97,51 +97,59 @@
 
 
 
-
     <section class="ftco-section ftco-degree-bg ">
         <div class=" ">
             <div class="row " ">
-                                    <div class="col-md-10 ftco-animate sidebar order-first " style="background-color: #1c1c1c !important; ">
-
-                                        <div id="comics-details" class="row">
-                                        </div>
-                                        <div class="row ">
-                                            <div class="sidebar-box ftco-animate ">
-                                                <h3 class="text-center mx-50 " id="bname" >
-
-                                                </h3>
-                                                <h3 class="text-center mx-50 " id="auth" >
-
-                                                </h3>
-                                                <h3 class="text-center mx-50 " id="pen" >
-
-                                                </h3>
-                                                <h3 class="text-center mx-50 " id="backg" >
-
-                                                </h3>
-                                                <h3 class="text-center mx-50 " id="publishh" >
-
-                                                </h3>
-                                                <h3 class="text-center mx-50 " id="img" >
-
-                                                </h3>
-
-                                                <h3 class="text-center mx-50 " id="bookLink" >
-
-                                                </h3>
-
-                                                <div class="block-100 mb-4 d-flex ">
-                                                    <!-- <a class="blog-img mr-4 " style="background-image:"></a> -->
-                                                    <div class="text ">
-                                                        <!-- <h3 class="heading "><a href="# ">It's a Magical World (Calvin and Hobbes)</a></h3> -->
-
-                                                    </div>
-                                                </div>
+                <div class="col-md-10 ftco-animate sidebar order-first " style="background-color: #1c1c1c !important; ">
 
 
-                                            </div>
-                                        </div>
-                                    </div>
+                    <div class="row "  style="background-color: #1c1c1c !important;">
+                        <div class="col-md-5 sidebar-box ftco-animate  "style="border-radius: 5px 0px 0px 5px;" >
+                            <div class="block-100 mb-4 d-flex ">
+                                <img src="" alt="">
+                                 <a class="blog-img mr-4 " id = "img" , style="background-image:" ></a>
+                                <div class="text ">
+                                    <!-- <h3 class="heading "><a href="# ">It's a Magical World (Calvin and Hobbes)</a></h3> -->
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7 sidebar-box ftco-animate " style="border-radius: 0px 5px 5px 0px;">
+                            <h1 class="text-center " style="font-size: 100px;" id="bname">
+
+                            </h1>
+
+                            <h3 class="text-left mx-50 " id="auth">
+
+                            </h3>
+
+                            <h3 class="text-left " id="pen">
+
+                            </h3>
+
+                            <h3 class="text-left " id="lang">
+
+                            </h3>
+                            <h3 class="text-left " id="backg">
+
+                            </h3>
+                            <h3 class="text-left " id="publishh">
+
+                            </h3>
+
+                            <button class="cybr-btn " id="bookLink" style="color:white ; margin-top: 50px;" >
+
+                            </button>
+
+
+                           
+
+
+                        </div>
+                     
+
+
+                    </div>
+                </div>
                                     <!-- .col-md-8 -->
                                     <div class="col-md-2 sidebar ftco-animate order-first " style="background-color: #1c1c1c; ">
                                        
@@ -556,7 +564,7 @@ console.log(marvel)
 var id = window.location.href.split("?id=")[1]
 console.log(id)
 var bookName = document.getElementById("bname")
-bookName.innerHTML = "Book Name: " + marvel[id].bookName;
+bookName.innerHTML = "" + marvel[id].bookName;
 
 var auth = document.getElementById("auth")
 auth.innerHTML = "Author: " + marvel[id].author;
@@ -574,7 +582,7 @@ var images = document.getElementById("img");
  images.innerHTML = "<img width='500px' src = " + marvel[id].img +" /> "
 
  var bookLink = document.getElementById("bookLink");
- bookLink.innerHTML = "Preview Link: " + "<a href='" + marvel[id].bookLink + "'  target='_blank'> Open Book Link </a>";
+ bookLink.innerHTML = " " + "<a style='color:white;' href='" + marvel[id].bookLink + "'  target='_blank'> Read Now </a>";
 
 
 // var imaage = document.getElementById("img")
