@@ -13,6 +13,13 @@ $(document).ready(() => {
         localStorage.setItem("storageName", searchText);
         return false;
     })
+    $('#searchForm11').on('submit', (e) => {
+        var searchText = $('#searchText11').val();
+        localStorage.setItem("storageName", searchText);
+        getBooks();
+        e.preventDefault();
+        return false;
+    })
 
 });
 

@@ -13,6 +13,7 @@ $(document).ready(() => {
         localStorage.setItem("storageName", searchText);
         return false;
     })
+    
 
 });
 
