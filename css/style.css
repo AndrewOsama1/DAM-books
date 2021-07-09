@@ -13455,14 +13455,14 @@ figcaption {
     z-index: -1;
   }
   
-  .cybr-btn:before {
+  /* .cybr-btn:before {
     background: var(--shadow-primary);
     transform: translate(var(--border), 0);
   }
   
   .cybr-btn:after {
     background: var(--primary);
-  }
+  } */
   
   .cybr-btn__tag {
     position: absolute;
